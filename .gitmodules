@@ -1,0 +1,9 @@
+[submodule "externals/argparse"]
+	path = externals/argparse
+	url = https://github.com/aleios/argparse
+[submodule "externals/fastgltf"]
+	path = externals/fastgltf
+	url = https://github.com/spnda/fastgltf
+[submodule "externals/meshoptimizer"]
+	path = externals/meshoptimizer
+	url = https://github.com/zeux/meshoptimizer
