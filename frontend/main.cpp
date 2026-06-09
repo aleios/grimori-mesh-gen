@@ -8,15 +8,18 @@
 
 int main(int argc, char** argv) {
 
+    bool vflip, hflip, verbose;
     argparse::ArgumentParser program("mesh-gen");
 
     program.add_argument("input_filename").required();
     program.add_argument("output_filename").required();
 
-    program.add_argument("-v", "--verbose").nargs(0).help("Enable verbose output").default_value(false);
+    program.add_argument("-v", "--verbose").nargs(0).help("Enable verbose output").store_into(verbose);
     program.add_argument("-p", "--platform").help("Specify the target platform (dc, 3ds, psp)").required().choices(
         "dc", "3ds", "psp"
     );
+    program.add_argument("--vflip-uv").nargs(0).help("Flip UV coordinates vertically").store_into(vflip);
+    program.add_argument("--hflip-uv").nargs(0).help("Flip UV coordinates horizontally").store_into(hflip);
 
     try {
         program.parse_args(argc, argv);
@@ -63,11 +66,12 @@ int main(int argc, char** argv) {
             return 1;
         }
 
+        // Emit flat vertex array for dreamcast, no indirection via indices.
         if (currentPlatform == Platform::Dreamcast) {
-            std::vector<Vertex> newVerts;
-            flatten(newVerts, submesh.vertices, indices);
-            submesh.vertices = newVerts; // TODO: bruh nah
+            submesh.vertices = flatten(submesh.vertices, indices);
         }
+
+        flipUVs(submesh.vertices, vflip, hflip);
 
         submesh.indices = indices;
         submesh.strips = strips;

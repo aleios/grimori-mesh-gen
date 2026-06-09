@@ -1,5 +1,5 @@
 #include "meshoperations.hpp"
-
+#include <algorithm>
 #include <map>
 #include <meshoptimizer.h>
 
@@ -60,11 +60,13 @@ bool stripify(std::vector<IndexType>& indicesOut, std::vector<StripInfo>& strips
     return true;
 }
 
-void flatten(std::vector<Vertex>& outVertices, const std::vector<Vertex>& vertices, const std::vector<IndexType>& indices) {
+std::vector<Vertex> flatten(const std::vector<Vertex>& vertices, const std::vector<IndexType>& indices) {
+    std::vector<Vertex> outVertices;
     outVertices.reserve(indices.size());
     for (auto& i : indices) {
         outVertices.push_back(vertices[i]);
     }
+    return outVertices;
 }
 
 std::vector<BoneGroup> partitionByBone(const std::vector<IndexType>& indices, const std::vector<Vertex>& vertices, uint8_t maxBones) {
@@ -81,4 +83,13 @@ std::vector<BoneGroup> partitionByBone(const std::vector<IndexType>& indices, co
 
     }
     return groups;
+}
+
+void flipUVs(std::vector<Vertex>& vertices, bool vflip, bool hflip) {
+    if (!vflip && !hflip) {
+        return;
+    }
+    std::ranges::for_each(vertices, [=](auto& v) {
+        v.uv = { hflip ? 1.0f - v.uv.x : v.uv.x, vflip ? 1.0f - v.uv.y : v.uv.y };
+    });
 }
