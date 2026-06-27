@@ -3,8 +3,8 @@
 
 #include "../include/types.hpp"
 #include "gltfparser.hpp"
+#include "meshpostprocessor.hpp"
 #include "meshwriter.hpp"
-#include "../include/meshoperations.hpp"
 
 int main(int argc, char** argv) {
 
@@ -43,6 +43,8 @@ int main(int argc, char** argv) {
         currentPlatform = Platform::N3DS;
     } else if (program.get("platform") == "psp") {
         currentPlatform = Platform::PSP;
+    } else if (program.get("platform") == "pc") {
+        currentPlatform = Platform::PC;
     }
 
     // Parse the input file
@@ -59,22 +61,11 @@ int main(int argc, char** argv) {
 
     // Process into strips
     // note; overwriting the original parser data.
-    for (auto& submeshes = parser.getSubmeshes(); auto& submesh : submeshes) {
-        std::vector<IndexType> indices;
-        std::vector<StripInfo> strips;
-        if (!stripify(indices, strips, submesh.indices, submesh.vertices)) {
-            return 1;
-        }
-
-        // Emit flat vertex array for dreamcast, no indirection via indices.
-        if (currentPlatform == Platform::Dreamcast) {
-            submesh.vertices = flatten(submesh.vertices, indices);
-        }
-
-        flipUVs(submesh.vertices, vflip, hflip);
-
-        submesh.indices = indices;
-        submesh.strips = strips;
+    MeshPostprocessor postprocess{
+        { currentPlatform, hflip, vflip }
+    };
+    if (!postprocess.execute(parser.getSubmeshes())) {
+        return 1;
     }
 
     // Write out data.

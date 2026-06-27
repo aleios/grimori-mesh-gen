@@ -7,7 +7,8 @@ enum class Platform
     : std::uint8_t {
     Dreamcast,
     N3DS,
-    PSP
+    PSP,
+    PC
 };
 
 struct Vec4 {

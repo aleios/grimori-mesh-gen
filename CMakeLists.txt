@@ -22,6 +22,9 @@ add_library(meshgenlib STATIC
             src/meshwriter.cpp
             src/gltfparser.cpp
             src/meshoperations.cpp
+            src/meshpostprocessor.cpp
+
+            src/meshreader.cpp
 )
 
 set_target_properties(meshgenlib PROPERTIES
