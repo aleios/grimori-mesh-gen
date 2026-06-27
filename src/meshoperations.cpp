@@ -1,4 +1,4 @@
-#include "meshoperations.hpp"
+#include "gmesh/meshoperations.hpp"
 #include <algorithm>
 #include <map>
 #include <meshoptimizer.h>

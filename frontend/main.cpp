@@ -1,10 +1,10 @@
 #include <iostream>
 #include <argparse/argparse.hpp>
 
-#include "types.hpp"
-#include "gltfparser.hpp"
-#include "meshpostprocessor.hpp"
-#include "meshwriter.hpp"
+#include "gmesh/types.hpp"
+#include "gmesh/gltfparser.hpp"
+#include "gmesh/meshpostprocessor.hpp"
+#include "gmesh/meshwriter.hpp"
 
 using namespace gmesh;
 

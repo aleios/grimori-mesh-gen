@@ -1,5 +1,5 @@
-#include "meshpostprocessor.hpp"
-#include "meshoperations.hpp"
+#include "gmesh/meshpostprocessor.hpp"
+#include "gmesh/meshoperations.hpp"
 
 
 namespace gmesh

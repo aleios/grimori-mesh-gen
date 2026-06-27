@@ -1,4 +1,4 @@
-#include "gltfparser.hpp"
+#include "gmesh/gltfparser.hpp"
 #include <filesystem>
 #include <iostream>
 #include <numeric>
