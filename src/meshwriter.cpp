@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+using namespace gmesh;
+
 namespace {
 
     bool write_vec3(std::ostream& fs, const Vec3& v) {

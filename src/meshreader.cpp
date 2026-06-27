@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+using namespace gmesh;
+
 namespace {
 
     bool read_vec3(std::istream& is, Vec3& v) {

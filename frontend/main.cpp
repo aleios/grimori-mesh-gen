@@ -6,6 +6,8 @@
 #include "meshpostprocessor.hpp"
 #include "meshwriter.hpp"
 
+using namespace gmesh;
+
 int main(int argc, char** argv) {
 
     bool vflip, hflip, verbose;

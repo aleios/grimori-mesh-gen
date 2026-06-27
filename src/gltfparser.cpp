@@ -5,6 +5,8 @@
 #include <fastgltf/core.hpp>
 #include <fastgltf/tools.hpp>
 
+using namespace gmesh;
+
 namespace
 {
     void process_mesh(const fastgltf::Asset& asset, const fastgltf::Mesh& mesh, std::vector<SubmeshData>& submeshes) {
