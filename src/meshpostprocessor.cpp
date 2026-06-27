@@ -1,5 +1,4 @@
 #include "meshpostprocessor.hpp"
-
 #include "meshoperations.hpp"
 
 bool MeshPostprocessor::execute(std::vector<SubmeshData>& submeshes) {

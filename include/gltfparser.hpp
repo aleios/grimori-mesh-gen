@@ -1,6 +1,5 @@
 #pragma once
 #include "meshparser.hpp"
-#include "types.hpp"
 
 class GltfParser
     : public MeshParser {

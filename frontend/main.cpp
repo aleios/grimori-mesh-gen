@@ -1,7 +1,7 @@
 #include <iostream>
 #include <argparse/argparse.hpp>
 
-#include "../include/types.hpp"
+#include "types.hpp"
 #include "gltfparser.hpp"
 #include "meshpostprocessor.hpp"
 #include "meshwriter.hpp"
